@@ -24,7 +24,7 @@ Given user interaction and product purchase data, build an analytics pipeline th
 - Mines frequent itemsets and association rules.
 - Produces actionable visual summaries for decision-making.
 
-## Current Project Plan
+## Project Plan
 
 1. Data ingestion and cleaning
 2. Feature/table construction (user-item matrix + transaction basket)
@@ -32,15 +32,21 @@ Given user interaction and product purchase data, build an analytics pipeline th
 4. Apriori and rule generation
 5. Metrics and benchmarking
 6. Visualization notebook/dashboard
-7. Django integration for interactive management use
+7. Advanced EDA extension 
+8. Model comparison, hybrid reranking, and rule stability extension 
+9. Django integration for interactive management use
 
-## Tech Stack (Planned)
+
+## Tech Stack
 
 - Python
 - pandas, numpy
 - scikit-learn (similarity and evaluation support)
 - mlxtend (Apriori and association rules)
 - matplotlib / seaborn / plotly (visualization)
+- Jupyter Notebook 
+- Hybrid reranking and model comparison pipeline 
+- Segment and temporal rule-stability analysis utilities
 - Django (management web application)
 
 ## Evaluation Plan
@@ -50,12 +56,15 @@ Recommendation quality will be assessed with ranking metrics and catalog quality
 - Precision@K, Recall@K, MAP
 - Coverage (catalog/user coverage)
 - Diversity (intra-list diversity)
+- Comparative evaluation across Popularity Baseline, Item-CF, User-CF, and Hybrid reranking
 
 Pattern-mining quality will be assessed using:
 
 - Support
 - Confidence
 - Lift
+- Segment-aware rule quality (by user group)
+- Rule stability across time windows (monthly support consistency)
 
 Performance/scalability will be tracked by:
 
