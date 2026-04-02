@@ -32,7 +32,7 @@ Given user interaction and product purchase data, build an analytics pipeline th
 4. Apriori and rule generation
 5. Metrics and benchmarking
 6. Visualization notebook/dashboard
-7. Flask integration for interactive use
+7. Django integration for interactive management use
 
 ## Tech Stack (Planned)
 
@@ -41,7 +41,7 @@ Given user interaction and product purchase data, build an analytics pipeline th
 - scikit-learn (similarity and evaluation support)
 - mlxtend (Apriori and association rules)
 - matplotlib / seaborn / plotly (visualization)
-- Flask (web interface)
+- Django (management web application)
 
 ## Evaluation Plan
 
