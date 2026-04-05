@@ -71,3 +71,17 @@ Performance/scalability will be tracked by:
 - Runtime by dataset size
 - Memory usage trends
 - Throughput for recommendation/rule generation
+
+
+## Django Management Application
+
+This project includes a Django-based management app in `django_app/`.
+
+### Django Features
+
+- Dashboard with KPI and model snapshot
+- User interaction management form
+- Recommendation page (User-CF top-N)
+- Global and segment-aware association rule views
+- Results page for Notebook 6 model metrics
+- Django Admin support with interaction log model (`InteractionLog`)
