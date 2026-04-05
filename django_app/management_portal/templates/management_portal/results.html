@@ -1,0 +1,25 @@
+{% extends 'management_portal/base.html' %}
+{% block content %}
+<h1>Notebook Results</h1>
+<section class="card">
+  <h2>Model Comparison (Notebook 6)</h2>
+  <table>
+    <thead>
+      <tr><th>Model</th><th>UsersEvaluated</th><th>Precision@K</th><th>Recall@K</th><th>MAP@K</th><th>Coverage</th><th>Diversity</th></tr>
+    </thead>
+    <tbody>
+      {% for r in model_results %}
+      <tr>
+        <td>{{ r.Model }}</td>
+        <td>{{ r.UsersEvaluated }}</td>
+        <td>{{ r.PrecisionK|floatformat:6 }}</td>
+        <td>{{ r.RecallK|floatformat:6 }}</td>
+        <td>{{ r.MAPK|floatformat:6 }}</td>
+        <td>{{ r.Coverage|floatformat:6 }}</td>
+        <td>{{ r.Diversity|floatformat:6 }}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</section>
+{% endblock %}

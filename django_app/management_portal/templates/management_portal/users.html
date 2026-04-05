@@ -1,0 +1,49 @@
+{% extends 'management_portal/base.html' %}
+{% block content %}
+<h1>User Management</h1>
+{% if not data_ready %}
+  <div class="card warning">{{ missing_msg }}</div>
+{% else %}
+  <section class="card">
+    <h2>Add Interaction</h2>
+    <form method="post" class="form-grid">
+      {% csrf_token %}
+      {% for field in form %}
+        <label>{{ field.label }}{{ field }}</label>
+      {% endfor %}
+      <button type="submit">Save Interaction</button>
+    </form>
+  </section>
+
+  <section class="card">
+    <h2>Top Users</h2>
+    <table>
+      <thead><tr><th>UserID</th><th>Interactions</th></tr></thead>
+      <tbody>
+        {% for row in users_summary %}
+          <tr><td>{{ row.UserID }}</td><td>{{ row.Interactions }}</td></tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </section>
+
+  <section class="card">
+    <h2>Recent Logged Interactions (DB)</h2>
+    <table>
+      <thead><tr><th>UserID</th><th>ProductID</th><th>Rating</th><th>Created At</th></tr></thead>
+      <tbody>
+      {% for log in recent_logs %}
+        <tr>
+          <td>{{ log.user_id }}</td>
+          <td>{{ log.product_id }}</td>
+          <td>{{ log.rating }}</td>
+          <td>{{ log.created_at }}</td>
+        </tr>
+      {% empty %}
+        <tr><td colspan="4">No entries yet.</td></tr>
+      {% endfor %}
+      </tbody>
+    </table>
+  </section>
+{% endif %}
+{% endblock %}

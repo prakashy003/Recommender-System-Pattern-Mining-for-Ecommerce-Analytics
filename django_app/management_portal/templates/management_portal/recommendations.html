@@ -1,0 +1,45 @@
+{% extends 'management_portal/base.html' %}
+{% block content %}
+<h1>Recommendations</h1>
+{% if not data_ready %}
+  <div class="card warning">{{ missing_msg }}</div>
+{% else %}
+  <section class="card">
+    <h2>Generate Top-N</h2>
+    <form method="get" class="form-inline">
+      <label>User
+        <select name="user_id">
+          {% for u in users %}
+            <option value="{{ u }}" {% if u == selected_user %}selected{% endif %}>{{ u }}</option>
+          {% endfor %}
+        </select>
+      </label>
+      <label>K
+        <input type="number" name="k" min="1" max="20" value="{{ k }}" />
+      </label>
+      <button type="submit">Run</button>
+    </form>
+  </section>
+
+  <section class="card">
+    <h2>Output</h2>
+    {% if recommendations %}
+      <table>
+        <thead><tr><th>ProductID</th><th>ProductName</th><th>Category</th><th>PredictedScore</th></tr></thead>
+        <tbody>
+          {% for row in recommendations %}
+            <tr>
+              <td>{{ row.ProductID }}</td>
+              <td>{{ row.ProductName|default:'-' }}</td>
+              <td>{{ row.Category|default:'-' }}</td>
+              <td>{{ row.PredictedScore }}</td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    {% else %}
+      <p>No recommendations available for the selected user.</p>
+    {% endif %}
+  </section>
+{% endif %}
+{% endblock %}

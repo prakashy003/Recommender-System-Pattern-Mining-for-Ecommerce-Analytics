@@ -1,0 +1,50 @@
+{% extends 'management_portal/base.html' %}
+{% block content %}
+<h1>Dashboard</h1>
+{% if not data_ready %}
+  <div class="card warning">{{ missing_msg }}</div>
+{% else %}
+  <section class="kpi-grid">
+    <div class="card kpi"><h3>Users</h3><p>{{ stats.users }}</p></div>
+    <div class="card kpi"><h3>Products</h3><p>{{ stats.products }}</p></div>
+    <div class="card kpi"><h3>Interactions</h3><p>{{ stats.interactions }}</p></div>
+    <div class="card kpi"><h3>Matrix Density</h3><p>{{ stats.density|floatformat:4 }}</p></div>
+  </section>
+
+  <section class="card">
+    <h2>Top Categories</h2>
+    <table>
+      <thead><tr><th>Category</th><th>Interactions</th></tr></thead>
+      <tbody>
+        {% for row in top_categories %}
+          <tr><td>{{ row.Category }}</td><td>{{ row.Interactions }}</td></tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </section>
+
+  <section class="card">
+    <h2>Model Snapshot</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Model</th><th>UsersEvaluated</th><th>Precision@K</th><th>Recall@K</th><th>MAP@K</th><th>Coverage</th><th>Diversity</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for r in model_results %}
+          <tr>
+            <td>{{ r.Model }}</td>
+            <td>{{ r.UsersEvaluated }}</td>
+            <td>{{ r.PrecisionK|floatformat:6 }}</td>
+            <td>{{ r.RecallK|floatformat:6 }}</td>
+            <td>{{ r.MAPK|floatformat:6 }}</td>
+            <td>{{ r.Coverage|floatformat:6 }}</td>
+            <td>{{ r.Diversity|floatformat:6 }}</td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </section>
+{% endif %}
+{% endblock %}

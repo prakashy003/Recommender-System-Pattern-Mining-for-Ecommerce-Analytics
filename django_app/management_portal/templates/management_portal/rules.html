@@ -1,0 +1,49 @@
+{% extends 'management_portal/base.html' %}
+{% block content %}
+<h1>Association Rules</h1>
+{% if not data_ready %}
+  <div class="card warning">{{ missing_msg }}</div>
+{% else %}
+  <section class="card">
+    <h2>Global Rules</h2>
+    <p>Total discovered: <strong>{{ global_rules_count }}</strong></p>
+    <table>
+      <thead><tr><th>Antecedents</th><th>Consequents</th><th>Support</th><th>Confidence</th><th>Lift</th></tr></thead>
+      <tbody>
+        {% for r in rules %}
+          <tr>
+            <td>{{ r.antecedents }}</td>
+            <td>{{ r.consequents }}</td>
+            <td>{{ r.support }}</td>
+            <td>{{ r.confidence }}</td>
+            <td>{{ r.lift }}</td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </section>
+
+  <section class="card">
+    <h2>Segment Rules</h2>
+    {% if segment_rules %}
+      <table>
+        <thead><tr><th>UserGroup</th><th>Antecedents</th><th>Consequents</th><th>Support</th><th>Confidence</th><th>Lift</th></tr></thead>
+        <tbody>
+          {% for r in segment_rules %}
+            <tr>
+              <td>{{ r.UserGroup }}</td>
+              <td>{{ r.antecedents }}</td>
+              <td>{{ r.consequents }}</td>
+              <td>{{ r.support }}</td>
+              <td>{{ r.confidence }}</td>
+              <td>{{ r.lift }}</td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    {% else %}
+      <p>No segment-level rules generated with current thresholds.</p>
+    {% endif %}
+  </section>
+{% endif %}
+{% endblock %}
