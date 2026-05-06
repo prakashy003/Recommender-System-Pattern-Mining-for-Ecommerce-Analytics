@@ -1,0 +1,40 @@
+# Environment variables
+.env
+.env.local
+.env.*.local
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+ENV/
+.venv
+
+# Jupyter Notebook
+.ipynb_checkpoints/
+*.ipynb_checkpoints
+
+# Django
+db.sqlite3
+*.log
+/media/
+/staticfiles/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Project specific
+Login Credentials.txt
+*.csv.bak
